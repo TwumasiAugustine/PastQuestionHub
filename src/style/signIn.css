@@ -1,0 +1,49 @@
+body {
+	height: 100vh;
+}
+
+.signInUser {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.signIn {
+	width: 100%;
+	max-width: 350px;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #ffffff;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.signInUser .form-group {
+	position: relative;
+}
+
+.signInUser .form-group input::placeholder {
+	color: #ccc;
+	font-size: 0.85rem;
+}
+
+.signInUser .form-group i {
+	position: absolute;
+	top: 70%;
+	transform: translateY(-50%);
+	right: 10px;
+	color: #0b1b4b;
+	cursor: pointer;
+	padding: 10px;
+	margin-left: 30px;
+}
+.signInUser .form-group button {
+	letter-spacing: 2px;
+}
+.forgot-password {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 20px;
+}
