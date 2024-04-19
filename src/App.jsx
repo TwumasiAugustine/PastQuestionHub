@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import CreateUser from './page/CreateUser';
 import SignIn from './page/SignIn';
 import UserInterface from './page/UserInterface';
+import AdminInterface from './page/AdminInterface'
 import NoPage from './page/NoPage';
 
 
@@ -24,6 +25,10 @@ const App = () => {
 				<Route
 					path='/userInterface'
 					element={<UserInterface />}
+				/>
+				<Route
+					path='/adminInterface'
+					element={<AdminInterface />}
 				/>
 				<Route
 					path='/createUser'

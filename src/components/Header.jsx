@@ -1,112 +1,78 @@
-import { useState } from 'react';
-import AdminInterface from '../page/AdminInterface';
-import UserProfile from '../components/UserProfile';
-import Settings from '../components/Settings';
-import { Navbar, Nav, Modal, Button } from 'react-bootstrap';
-// import {checkAdminRole} from '../utils/firebaseUtils'
+import {useState} from 'react'
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import Logo from '../assets/download.png';
+import AccountModal from '../components/AccountModal';
+import ThemeToggle from '../components/ThemeToggle';
 
 const Header = () => {
-	// const [isAdmin, setIsAdmin] = useState(true);
-	const [showAdminModal, setShowAdminModal] = useState(false);
-	const [showSettingsModal, setShowSettingsModal] = useState(false);
-	const [showUserProfileModal, setShowUserProfileModal] = useState(false);
+	const [show, setShowAccount] = useState(false);
 
-	const handleAdminClick = () => setShowAdminModal(true);
-	const handleSettingsClick = () => setShowSettingsModal(true);
-	const handleUserProfileClick = () => setShowUserProfileModal(true);
+	const handleCloseAcc = () => setShowAccount(false);
+	const handleShowAccount = () => setShowAccount(true);
 
-	const handleCloseModals = () => {
-		setShowAdminModal(false);
-		setShowSettingsModal(false);
-		setShowUserProfileModal(false);
-	};
-
-	
 	return (
-		<>
-			<Navbar
-				className='Header p-2'
-				expand='lg'>
-				<Navbar.Brand
-					className='h1'
-					href='#'>
-					Past Question Hub
+		<Navbar
+			collapseOnSelect
+			expand='lg'
+			className='bg-body-tertiary'
+			variant='white'>
+			<Container>
+				<Navbar.Brand href='#home'>
+					Past Questions Hub
+					<img
+						className='img bi-image mx-2 bi-image-alt'
+						src={Logo}
+						alt='logo'
+						style={{ width: '40px', height: '40px' }}
+					/>
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls='navbarNav' />
-				<Navbar.Collapse id='navbarNav'>
-					<Nav className='ms-auto'>
-						{<Nav.Link onClick={handleAdminClick}>
-							Admin
-						</Nav.Link>}
-								<Nav.Link onClick={handleUserProfileClick}>
-									User Profile
-								</Nav.Link>
-								<Nav.Link onClick={handleSettingsClick}>
-									Settings
-								</Nav.Link>
-
-								<Nav.Link >
-									Log Out
-								</Nav.Link>
+				<Navbar.Toggle aria-controls='responsive-navbar-nav' />
+				<Navbar.Collapse id='responsive-navbar-nav'>
+					<Nav className='me-auto'>
+						<Nav.Link
+							href='#account'
+							onClick={handleShowAccount}>
+							Account Info
+						</Nav.Link>
+						<AccountModal
+							handleCloseAcc={handleCloseAcc}
+							show={show}
+							setShowAccount={setShowAccount}
+						/>
+						<NavDropdown
+							title='Settings'
+							id='collapsible-nav-dropdown'>
+							<NavDropdown.Item href='#'>
+								<ThemeToggle/>
+							</NavDropdown.Item>
+							<NavDropdown.Item href='#action/3.2'>
+								Change Email or Password
+							</NavDropdown.Item>
+							<NavDropdown.Item href='#action/3.3'>
+								Update Profile
+							</NavDropdown.Item>
+							<NavDropdown.Divider />
+							<NavDropdown.Item href='#action/3.4'>
+								Last Login
+							</NavDropdown.Item>
+						</NavDropdown>
+					</Nav>
+					<Nav>
+						<Nav.Link href='#deets'>
+							Message Inbox{' '}
+							<span className='badge bg-danger rounded-pill'>
+								0
+							</span>
+						</Nav.Link>
+						<Nav.Link
+							eventKey={2}
+							href='#memes'>
+							Log Out
+						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
-			</Navbar>
-			{/* Admin Modal */}
-				<Modal
-					show={showAdminModal}
-					onHide={handleCloseModals}
-					centered>
-					<Modal.Header closeButton>
-						<Modal.Title>Admin</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<AdminInterface />
-					</Modal.Body>
-					<Modal.Footer>
-						<Button
-							variant='secondary'
-							onClick={handleCloseModals}>
-							Close
-						</Button>
-					</Modal.Footer>
-				</Modal>
-			<Modal
-				show={showSettingsModal}
-				onHide={handleCloseModals}
-				centered>
-				<Modal.Header closeButton>
-					<Modal.Title>Settings</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<Settings  />
-				</Modal.Body>
-				<Modal.Footer>
-					<Button
-						variant='secondary'
-						onClick={handleCloseModals}>
-						Close
-					</Button>
-				</Modal.Footer>
-			</Modal>
-			<Modal
-				show={showUserProfileModal}
-				onHide={handleCloseModals}
-				centered>
-				<Modal.Header closeButton>
-					<Modal.Title>User Profile</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<UserProfile  />
-				</Modal.Body>
-				<Modal.Footer>
-					<Button
-						variant='secondary'
-						onClick={handleCloseModals}>
-						Close
-					</Button>
-				</Modal.Footer>
-			</Modal>
-		</>
+			</Container>
+		</Navbar>
 	);
 };
 

@@ -1,15 +1,17 @@
 
-import UploadSection from '../components/UploadSection'
+import AdminDashBoard from '../components/AdminDashboard';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 
 const AdminInterface = () => {
-
-    
 
 
     return (
         <div className="Admin-interface">
-            <h1>Welcome, Admin!</h1>
-            <UploadSection />
+            <Header/>
+            <AdminDashBoard />
+            <Footer/>
         </div>
     )
 }

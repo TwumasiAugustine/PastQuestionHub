@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import logo from '../assets/download.png';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import {ProgressBar} from 'react-bootstrap'
 import '../style/createUser.css';
 import { db } from '../firebaseConfig';
 import {
@@ -212,13 +213,17 @@ const CreateUser = () => {
 		<div className='createUser'>
 			<div className='logo-container'>
 				<img
-					className='logo mx-auto d-block'
+					style={{ width: '50px',  height: '50px'}}
+					className='img-fluid logo mx-auto d-block'
 					src={logo}
 					alt='logo'
 				/>
 				<h1 className='text-center'>Past Question Hub</h1>
 			</div>
 			<div className='form-container'>
+				<div className='progress-container'>
+					<ProgressBar  animated now={step * 25} label={`${step * 25}%`} />
+				</div>
 				<form
 					action='#'
 					onSubmit={handleSubmit}
@@ -244,7 +249,7 @@ const CreateUser = () => {
 								/>
 								<small
 									id='emailHelp'
-									className='form-text text-danger'>
+									className='form-text d-block text-danger'>
 									{emailError}
 								</small>
 							</div>
@@ -299,6 +304,7 @@ const CreateUser = () => {
 										showPassword
 											? 'bi bi-eye-slash'
 											: 'bi bi-eye'
+										
 									}
 									onClick={togglePassword}></i>
 								<small

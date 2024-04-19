@@ -1,105 +1,76 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../style/signIn.css';
-
+import { Button, Form } from 'react-bootstrap';
+import Logo from '../assets/download.png';
 
 const SignIn = () => {
-
-
-	
-	
 	const [showPassword, setShowPassword] = useState(false);
 
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-	
-	};
-
-	const togglePassword = () => {
-		setShowPassword(!showPassword);
-	};
+	const navigate = useNavigate();
 
 	
 
 	return (
-		<div className='signInUser'>
-			<div className=' col-md-6 col-sm-12'>
-				<h1 className='text-center mb-4'>Past Question Hub</h1>
-				<small className='error-container text-danger'>
-					{}
-				</small>
-				<div className='signIn mt-2 form-container'>
-					<form
-						id='form'
-						onSubmit>
-						<div className='form-group mt-2'>
-							<label
-								className='form-label'
-								htmlFor='email'>
-								Email{' '}
-							</label>
-							<input
-								className='form-control form-control-lg'
-								type='email'
-								name='email'
-								id='acc-user'
-								required
-								onChange={handleInputChange}
-								placeholder='Enter your email'
-								value
-								autoComplete='current-email'
-							/>
-						</div>
-						<div className='form-group mt-2'>
-							<label
-								className='form-label'
-								htmlFor='password'>
-								Password{' '}
-							</label>
-							<input
-								className='form-control form-control-lg'
-								type={showPassword ? 'text' : 'password'}
-								name='password'
-								id='password'
-								required
-								onChange={handleInputChange}
-								placeholder='Enter Password'
-								value
-								autoComplete='current-password'
-							/>
-							<i
-								className={
-									showPassword
-										? 'bi bi-eye-slash'
-										: 'bi bi-eye'
-								}
-								onClick={togglePassword}></i>
-						</div>
-						<div className='form-group forgot-password mt-2'>
-							<a href='#'>Forget Password?</a>
-						</div>
-						<div className=' form-group mb-2 button-container'>
-							<button
-								type='submit'
-								className='btn btn-primary form-control'>
-								{/* { ? 'Signing in...' : 'Sign in'} */} Sign In
-							</button>
-						</div>
-					</form>
-					<div className='createAccount'>
-						<p>
-							Don&apos;t have an account?
-							<Link
-								className='m-2'
-								to='/createUser'>
-								Create Account
-							</Link>
-						</p>
-						<Outlet />
-					</div>
-				</div>
+		<div className=' SignIn container d-flex flex-column align-items-center justify-content-center container-sm'>
+			<div className='logo m-2'>
+				<img className='img-fluid' style={{ width: "50px" }} src={Logo} alt='logo' />
 			</div>
+				<h1>Past Questions Hub</h1>
+			<Form className='border rounded bg-white p-4 m-4 shadow'>
+				<h3>Sign In</h3>
+				<Form.Group
+					className='mb-3'
+					controlId='formBasicEmail'>
+					<Form.Label>Email address</Form.Label>
+					<Form.Control
+						type='email'
+						placeholder='example@email.com'
+						autoFocus
+					/>
+					<Form.Text className='text-muted'>
+						We&apos;ll never share your email with anyone else.
+					</Form.Text>
+				</Form.Group>
+
+				<Form.Group
+					className='mb-3'
+					controlId='formBasicPassword'>
+					<Form.Label>Password</Form.Label>
+					<Form.Control
+						type='password'
+						placeholder='Password'
+					/>
+				</Form.Group>
+				<Form.Group
+					className='mb-3 fs-6'
+					controlId='formBasicCheckbox'>
+					<Form.Check
+						type='checkbox'
+						label='Show password'
+					/>
+				</Form.Group>
+				<Form.Group className='w-100'>
+					<Button
+						className='w-100'
+						variant='primary'
+						type='submit'>
+						Sign In
+					</Button>
+				</Form.Group>
+				<Form.Group>
+					<Form.Text className='text-muted'>
+						<Link to='/'>Forgot Password?</Link>
+					</Form.Text>
+				</Form.Group>
+				<Form.Group>
+					<Form.Text className='text-muted p-'>
+						Don&apos;t have an account?
+						<Link to='/createUser'> Sign Up</Link>
+					</Form.Text>
+				</Form.Group>
+			</Form>
 		</div>
 	);
 };

@@ -1,17 +1,14 @@
 import '../style/userInterface.css';
 import DownloadSection from '../components/DownloadSection';
 import Header from '../components/Header';
-
+import Footer from '../components/Footer';
 
 const UserInterface = () => {
-	
 	return (
 		<div className='user-interface'>
-			<Header
-				
-			/>
-			<h1 className='m-4'>Welcome, !</h1>
+			<Header />
 			<DownloadSection />
+			<Footer />
 		</div>
 	);
 };
